@@ -26,6 +26,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./client
-          file: ../client/Dockerfile
+          file: ./client/Dockerfile
           push: true
           tags: hjain2003/imgdevclient
