@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [images, setImages] = useState([]);
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile) return alert("Please select a file");
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+
+    try {
+      await axios.post("http://localhost:5000/upload", formData);
+      fetchImages();
+      setSelectedFile(null);
+    } catch (err) {
+      console.error("Upload failed", err);
+    }
+  };
+
+  const fetchImages = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/images");
+      setImages(res.data);
+    } catch (err) {
+      console.error("Failed to fetch images", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>📸 Image Uploader</h1>
+      <div className="upload-section">
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={handleUpload}>Upload</button>
+      </div>
+      <div className="image-grid">
+        {images.map((img, idx) => (
+          <div className="image-card" key={idx}>
+            <img src={img.url} alt={`uploaded-${idx}`} />
+          </div>
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
