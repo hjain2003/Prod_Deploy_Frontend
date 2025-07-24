@@ -41,7 +41,7 @@
     git clone https://github.com/hjain2003/Frontend_Devops.git
     ```
 2. Run `npm install` in both the server and client folders.
-3. In the server folder, create a `.env` file and add:
+3. In the server folder, create a `.env` file and add :
     ```env
     AWS_ACCESS_KEY_ID=<your-access-key-id>
     AWS_SECRET_ACCESS_KEY=<your-secret-access-key>
