@@ -1,0 +1,17 @@
+# dependencies
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# production build (will be created inside container anyway)
+build
+
+# env & config
+.env*
+!.env.example
+
+# misc
+.DS_Store
+.git
+.gitignore

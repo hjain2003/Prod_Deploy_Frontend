@@ -16,7 +16,7 @@ const App = () => {
     formData.append("image", selectedFile);
 
     try {
-      await axios.post("http://localhost:5000/upload", formData);
+      await axios.post(`${process.env.REACT_APP_API_URL}/upload`, formData);
       fetchImages();
       setSelectedFile(null);
     } catch (err) {
@@ -26,7 +26,7 @@ const App = () => {
 
   const fetchImages = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/images");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/images`);
       setImages(res.data);
     } catch (err) {
       console.error("Failed to fetch images", err);
