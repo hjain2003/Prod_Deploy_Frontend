@@ -12,7 +12,7 @@ body {
 
 .container {
   text-align: center;
-  padding: 2rem;
+  padding: 2.5rem;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -39,7 +39,7 @@ input[type="file"] {
 
 button {
   padding: 0.6rem 1.2rem;
-  background-color: #4caf50;
+  background-color: black;
   color: white;
   border: none;
   border-radius: 6px;
